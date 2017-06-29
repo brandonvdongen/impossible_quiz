@@ -1,5 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
-
+    let lives = 3;
     let qi = 0;//question index
     const questions = {
         question1: {question: "Click yes to exit", answers: ["NO", "YES", "canel", "exit"], correct: 1},
@@ -29,11 +29,15 @@ document.addEventListener("DOMContentLoaded", function () {
         let sel = questions["question"+qi]["correct"];
         console.log(sel);
         if(i == sel){
-            console.log("ok",i,sel);
             qi++;
             set_question(qi);
         }
-        console.log("fail",i,sel);
+
+        lives--;
+        console.log(lives);
+        if(lives <= 0){
+            document.getElementById("container").innerHTML = "GAME OVER";
+        }
     }
 
     document.addEventListener("click", function (e) {
