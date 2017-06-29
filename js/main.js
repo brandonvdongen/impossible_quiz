@@ -6,7 +6,7 @@ document.addEventListener("DOMContentLoaded", function () {
         question2: {question: "What number matches the answer", answers: ["FOUR", "ONE", "THREE", "SIX"], correct: 1},
         question3: {question: "Which cheese is made backwards", answers: ["Brie", "Cheddar", "Edam", "Babybel"], correct: 3},
         question4: {question: "vraag4", answers: ["a", "b", "c", "d"], correct: 4},
-        question5: {question: "The answer is 1", answers: ["one", "2", "III", "4"], correct: 5},
+        question5: {question: "The answer is <span id='answer5'><span>1</span></span>", answers: ["one", "2", "III", "4"], correct: 5},
     };
 
     let question = document.getElementById("question");
@@ -27,22 +27,22 @@ document.addEventListener("DOMContentLoaded", function () {
 
     function answer_question(i) {
         let sel = questions["question"+qi]["correct"];
-        console.log(sel);
         if(i == sel){
             qi++;
             set_question(qi);
-        }
-
-        lives--;
-        console.log(lives);
-        if(lives <= 0){
-            document.getElementById("container").innerHTML = "GAME OVER";
+        }else {
+            lives--;
+            console.log(lives);
+            if (lives <= 0) {
+                document.getElementById("container").innerHTML = "GAME OVER";
+            }
         }
     }
 
     document.addEventListener("click", function (e) {
 
         if(e.target.parentNode.id.slice(0,-1) == "answer"){
+            console.log(e.target.id);
             answer_question(e.target.parentNode.id.charAt(6));
         }
     });
