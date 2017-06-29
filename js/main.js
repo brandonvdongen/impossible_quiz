@@ -2,11 +2,11 @@ document.addEventListener("DOMContentLoaded", function () {
 
     let qi = 0;//question index
     const questions = {
-        question1: {question: "The answer is 1", answers: ["one", "2", "III", ""], correct: 5},
+        question1: {question: "Click yes to exit", answers: ["NO", "YES", "canel", "exit"], correct: 1},
         question2: {question: "What number matches the answer", answers: ["FOUR", "ONE", "THREE", "SIX"], correct: 1},
         question3: {question: "Which cheese is made backwards", answers: ["Brie", "Cheddar", "Edam", "Babybel"], correct: 3},
         question4: {question: "vraag4", answers: ["a", "b", "c", "d"], correct: 4},
-        question5: {question: "Click yes to exit", answers: ["NO", "YES", "canel", "exit"], correct: 1},
+        question5: {question: "The answer is 1", answers: ["one", "2", "III", "4"], correct: 5},
     };
 
     let question = document.getElementById("question");
@@ -30,17 +30,17 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log(sel);
         if(i == sel){
             console.log("ok",i,sel);
+            qi++;
+            set_question(qi);
         }
         console.log("fail",i,sel);
     }
 
-    set_question(1);
     document.addEventListener("click", function (e) {
-        console.log(e.target.parentNode.id);
-        console.log();
 
         if(e.target.parentNode.id.slice(0,-1) == "answer"){
             answer_question(e.target.parentNode.id.charAt(6));
         }
     });
+    set_question(1);
 });
